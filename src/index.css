@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0B1B3D;
+  --color-navy-light: #1A2F5A;
+  --color-navy-dark: #050d21;
+  --color-gold: #D4AF37;
+  --color-gold-light: #F3E5AB;
+  --color-gold-dark: #AA8C2C;
+  --color-elegant-bg: #F8F9FA;
+  --color-elegant-card: #FFFFFF;
+  --color-elegant-text: #2C3E50;
+
+  --font-serif: "Merriweather", serif;
+  --font-sans: "Inter", sans-serif;
+}
