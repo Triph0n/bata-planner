@@ -4,7 +4,7 @@ import { cn } from '../lib/utils';
 import { Smile, Briefcase, Moon, Coffee, Apple, Calculator, Meh, Frown } from 'lucide-react';
 
 const HabitTracker = ({ year, month }) => {
-    const { getMonthData, toggleHabit, updateMonthData, getHabitName, updateHabitName } = usePlannerStore();
+    const { getMonthData, toggleHabit, updateMonthData, getHabitName, updateHabitName, getHabitCounts, addHabit } = usePlannerStore();
     const data = getMonthData(year, month);
     const daysInMonth = new Date(year, month, 0).getDate();
     const days = Array.from({ length: 31 }, (_, i) => i + 1);
@@ -208,6 +208,8 @@ const HabitTracker = ({ year, month }) => {
         </div>
     );
 
+    const counts = getHabitCounts();
+
     return (
         <div className="w-full overflow-x-auto bg-transparent text-navy text-xs">
             <div className="min-w-[900px] border border-navy/30 rounded-lg overflow-hidden shadow-sm">
@@ -225,18 +227,29 @@ const HabitTracker = ({ year, month }) => {
 
                 {/* Section: Habits */}
                 <div className="border-b-2 border-gold/40 bg-white">
-                    {/* Render 5 Daily Habits */}
-                    {renderDailyRow(1)}
-                    {renderDailyRow(2)}
-                    {renderDailyRow(3)}
-                    {renderDailyRow(4)}
-                    {renderDailyRow(5)}
+                    {/* Render Daily Habits */}
+                    {Array.from({ length: counts.daily }, (_, i) => i + 1).map(index => renderDailyRow(index))}
+                    <div className="border-b border-navy/20 bg-navy/5">
+                        <button onClick={() => addHabit('daily')} className="w-full py-1 text-xs text-navy/70 hover:text-navy font-bold flex items-center justify-center gap-1">
+                            + Přidat denní návyk
+                        </button>
+                    </div>
 
-                    {renderWeeklyRowMerged(1)}
-                    {renderWeeklyRowMerged(2)}
-                    {renderWeeklyRowMerged(3)}
+                    {/* Render Weekly Habits */}
+                    {Array.from({ length: counts.weekly }, (_, i) => i + 1).map(index => renderWeeklyRowMerged(index))}
+                    <div className="border-b border-navy/20 bg-navy/5">
+                        <button onClick={() => addHabit('weekly')} className="w-full py-1 text-xs text-navy/70 hover:text-navy font-bold flex items-center justify-center gap-1">
+                            + Přidat týdenní návyk
+                        </button>
+                    </div>
 
-                    {renderMonthlyRow(1)}
+                    {/* Render Monthly Habits */}
+                    {Array.from({ length: counts.monthly }, (_, i) => i + 1).map(index => renderMonthlyRow(index))}
+                    <div className="border-b border-navy/20 bg-navy/5">
+                        <button onClick={() => addHabit('monthly')} className="w-full py-1 text-xs text-navy/70 hover:text-navy font-bold flex items-center justify-center gap-1">
+                            + Přidat měsíční návyk
+                        </button>
+                    </div>
                 </div>
 
                 {/* Section header */}

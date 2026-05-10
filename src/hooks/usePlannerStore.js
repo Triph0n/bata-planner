@@ -129,12 +129,29 @@ export const usePlannerStore = () => {
         return `${type} ${index}`;
     };
 
+    const getHabitCounts = () => {
+        return data.habitCounts || { daily: 5, weekly: 3, monthly: 1 };
+    };
+
+    const addHabit = (type) => {
+        const currentCounts = getHabitCounts();
+        setData(prev => ({
+            ...prev,
+            habitCounts: {
+                ...currentCounts,
+                [type]: currentCounts[type] + 1
+            }
+        }));
+    };
+
     return {
         data,
         getMonthData,
         updateMonthData,
         toggleHabit,
         getHabitName,
-        updateHabitName
+        updateHabitName,
+        getHabitCounts,
+        addHabit
     };
 };

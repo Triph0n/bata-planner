@@ -47,10 +47,7 @@ function App() {
           {/* Decorative Top Accent */}
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-navy via-gold to-navy"></div>
           
-          <div className="mb-6 border-b border-gray-200 pb-4 text-center flex justify-between items-end">
-            <h2 className="font-serif text-3xl font-bold uppercase tracking-widest text-navy">NÁVYKY</h2>
-            <p className="text-gray-500 font-serif italic text-sm max-w-lg text-right">"To, co jsem doposud udělal, považuji za začátek. Nekladu si žádných mezí, kam až chci dojít. Mám jen přání dojít, co nejdál." <span className="font-bold not-italic text-navy-light">- Tomáš Baťa</span></p>
-          </div>
+          <div className="mb-6 border-b border-gray-200 pb-4 text-center"></div>
           <HabitTracker year={year} month={month} />
         </div>
       </main>
